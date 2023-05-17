@@ -11,19 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('property', function (Blueprint $table) {
+        Schema::create('Images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('CASCADE');
-            $table->integer('title');
-            $table->string('location');
-            $table->string('desc');
-            $table->string('price');
-            $table->string('bedroom');
-            $table->string('bathroom');
-            $table->string('size');
-            $table->string('type');
-            $table->string('garage');
-            $table->timestamps();
+            $table->string('path');
+
         });
     }
 
