@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\ApiPropertyController;
+use App\Http\Controllers\ImagesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('properties', [ApiPropertyController::class, 'index']);
 Route::get('property/{$id}', [ApiPropertyController::class, 'show']);
-Route::post('properties', [ApiPropertyController::class, 'store']);
+Route::post('property', [ApiPropertyController::class, 'store']);
 Route::put('property/{$id}', [ApiPropertyController::class, 'update']);
+Route::post('image', [ImagesController::class, 'uploadImage']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

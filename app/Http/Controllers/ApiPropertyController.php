@@ -17,25 +17,25 @@ class ApiPropertyController extends Controller
     public function store(Request $request)
     {
         $request->validate([]);
-        $properties = new Property();
-        $properties->title = $request->title;
-        $properties->user_id = $request->user_id;
-        $properties->location = $request->location;
-        $properties->desc = $request->desc;
-        $properties->price = $request->price;
-        $properties->bedroom = $request->bedroom;
-        $properties->bathroom = $request->bathroom;
-        $properties->size = $request->size;
-        $properties->garage = $request->garage;
+        $property = new Property();
+        $property->title = $request->title;
+        $property->location = $request->location;
+        $property->desc = $request->desc;
+        $property->price = $request->price;
+        $property->bedroom = $request->bedroom;
+        $property->bathroom = $request->bathroom;
+        $property->size = $request->size;
+        $property->type = $request->type;
+        $property->garage = $request->garage;
 
-        $properties->save();
+        $property->save();
         return "Property Saved Successfylly";
 
     }
     public function show($id)
     {
-        $property = Property::findorFail($id);
-        return $property;
+        $properties = Property::findorFail($id);
+        return $properties;
     }
     public function update(Request $request, string $id)
     {
@@ -71,4 +71,5 @@ class ApiPropertyController extends Controller
         $property->delete();
         return "Property deleted";
     }
+
 }
