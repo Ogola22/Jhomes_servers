@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            //$table->foreignId('user_id')->constrained()->onDelete('CASCADE');
             $table->string('title');
             $table->string('location');
             $table->string('desc');
@@ -23,6 +22,8 @@ return new class extends Migration
             $table->string('size');
             $table->string('type');
             $table->string('garage');
+            $table->foreignId('proprty_type_id')->nullable();
+            $table->foreignId('agent_id')->nullable()->constrained()->onDelete('CASCADE');
             $table->timestamps();
         });
     }
