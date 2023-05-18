@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('tweeter');
             $table->string('linkedin');
             $table->string('instagram');
+            $table->string('DoB');
             $table->foreignId('properties_id')->nullable()->constrained()->onDelete('CASCADE');
             $table->timestamps();
 
