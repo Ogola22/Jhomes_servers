@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Exists;
 
 
 class ApiPropertyController extends Controller
@@ -34,12 +35,12 @@ class ApiPropertyController extends Controller
     }
     public function show($id)
     {
-        $properties = Property::findorFail($id);
-        return $properties;
+        $property = Property::findorFail($id);
+        return $property;
     }
-    public function update(Request $request, string $id)
+    public function update( string $id, Request $request)
     {
-        $property = Property::find($id);
+        $property = Property::findorFail($id);
         $request->vilidate([
             'title' =>['required', 'min:10', 'max:100'],
             'location' =>['required', 'min:2', 'max:100'],

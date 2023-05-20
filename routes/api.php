@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('properties', [ApiPropertyController::class, 'index']);
-Route::get('property/{$id}', [ApiPropertyController::class, 'show']);
+Route::get('property/{id}', [ApiPropertyController::class, 'show']);
 Route::post('property', [ApiPropertyController::class, 'store']);
-Route::put('property/{$id}', [ApiPropertyController::class, 'update']);
+Route::put('property/{id}', [ApiPropertyController::class, 'update']);
 Route::post('image', [ImagesController::class, 'uploadImage']);
 
 Route::post('register', [ApiUserController::class, 'register']);
@@ -27,9 +27,10 @@ Route::post('login', [ApiUserController::class, 'login']);
 
 Route::get('user', [ApiPropertyController::class, 'show']);
 
+Route::post('logout',[ApiUserController::class,'logout']);
 //protected routes
 Route:: group (['middleware'=>['auth:sanctum']], function () {
-    Route::post('logout',[ApiUserController::class,'logout']);
+
 
     }
 );

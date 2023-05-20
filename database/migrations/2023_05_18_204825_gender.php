@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('gender', function (Blueprint $table) {
             $table->id();
-            $table->string('Gender Name');
+            $table->string('genderName');
             $table->timestamps();
         });
     }
@@ -26,3 +26,4 @@ return new class extends Migration
         Schema::dropIfExists('gender');
     }
 };
+

@@ -52,10 +52,18 @@ class ApiUserController extends Controller
             'message'=> 'Login successfull'
         ]);
     }
-    public function logout () {
-        Auth::user()->tokens()->delete();
-        return "User logged out";
+
+    public function logout(Request $request) {
+        if ($request->user()) {
+            $request->user()->tokens()->delete();
+        }
+
+        return response()->json(['message' => 'Logout successful'], 200);
     }
+    // public function logout () {
+    //     Auth::user()->tokens()->delete();
+    //     return "User logged out";
+    // }
     public function show()
     {
         $user = User::findorFail();
