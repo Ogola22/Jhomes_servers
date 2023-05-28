@@ -17,7 +17,9 @@ class ApiPropertyController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([]);
+        $validatedData =$request->validate([
+            'image' => 'required|image|max:128',
+        ]);
         $property = new Property();
         $property->title = $request->title;
         $property->location = $request->location;
@@ -28,6 +30,8 @@ class ApiPropertyController extends Controller
         $property->size = $request->size;
         $property->type = $request->type;
         $property->garage = $request->garage;
+        $property->image_path = $request->file('image')->store('public/images');
+
 
         $property->save();
         return "Property Saved Successfylly";
