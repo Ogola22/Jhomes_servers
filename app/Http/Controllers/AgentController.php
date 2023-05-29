@@ -12,7 +12,8 @@ class AgentController extends Controller
      */
     public function index()
     {
-        //
+        $agents = Agent::all();
+        return $agents;
     }
 
     /**

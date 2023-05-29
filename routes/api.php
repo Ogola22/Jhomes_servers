@@ -20,6 +20,9 @@ Route::get('properties', [ApiPropertyController::class, 'index']);
 Route::get('property/{id}', [ApiPropertyController::class, 'show']);
 Route::post('property', [ApiPropertyController::class, 'store']);
 Route::put('property/{id}', [ApiPropertyController::class, 'update']);
+Route::delete('property/{id}', [ApiPropertyController::class, 'delete']);
+
+
 Route::post('image', [ImagesController::class, 'uploadImage']);
 
 Route::post('register', [ApiUserController::class, 'register']);

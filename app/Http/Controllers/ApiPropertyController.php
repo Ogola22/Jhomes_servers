@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Exists;
@@ -18,7 +17,7 @@ class ApiPropertyController extends Controller
     public function store(Request $request)
     {
         $validatedData =$request->validate([
-            'image' => 'required|image|max:128',
+            'image' => 'image|max:1028',
         ]);
         $property = new Property();
         $property->title = $request->title;
@@ -30,7 +29,7 @@ class ApiPropertyController extends Controller
         $property->size = $request->size;
         $property->type = $request->type;
         $property->garage = $request->garage;
-        $property->image_path = $request->file('image')->store('public/images');
+        //$property->image_path = $request->file('image')->store('public/images');
 
 
         $property->save();
@@ -42,19 +41,11 @@ class ApiPropertyController extends Controller
         $property = Property::findorFail($id);
         return $property;
     }
-    public function update( string $id, Request $request)
+    public function update(string $id, Request $request)
     {
         $property = Property::findorFail($id);
-        $request->vilidate([
-            'title' =>['required', 'min:10', 'max:100'],
-            'location' =>['required', 'min:2', 'max:100'],
-            'desc' =>['required','max:255'],
-            'price' =>['required'],
-            'bedroom' =>['required'],
-            'bathroom' =>['required'],
-            'size' =>['required'],
-            'type' =>['required'],
-            'garage' =>['required'],
+        $request->validate([
+
         ]);
         $property->title = $request->title;
         $property->location = $request->location;
@@ -65,6 +56,7 @@ class ApiPropertyController extends Controller
         $property->size = $request->size;
         $property->type = $request->type;
         $property->garage = $request->garage;
+        //$property->image_path = $request->image_path;
 
         $property->update();
         return "Property updated successfully";
