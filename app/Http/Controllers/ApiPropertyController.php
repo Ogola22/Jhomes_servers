@@ -16,7 +16,7 @@ class ApiPropertyController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData =$request->validate([
+        $request->validate([
             'image' => 'image|max:1028',
         ]);
         $property = new Property();

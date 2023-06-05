@@ -18,14 +18,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->integer('phone')->unique();
             $table->string('age');
-            $table->foreignId('gender_id')->nullable();
             $table->string('biography');
             $table->string('facebook');
             $table->string('tweeter');
             $table->string('linkedin');
             $table->string('instagram');
             $table->string('DoB');
-            $table->foreignId('properties_id')->nullable()->constrained()->onDelete('CASCADE');
+            $table->foreignId('properties_id')->nullable();
             $table->timestamps();
 
         });

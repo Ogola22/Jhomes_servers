@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('garage');
             $table->foreignId('proprty_type_id')->nullable();
-            $table->foreignId('agent_id')->nullable()->constrained()->onDelete('CASCADE');
+            $table->foreignId('agent_id')->nullable();
             $table->timestamps();
         });
     }

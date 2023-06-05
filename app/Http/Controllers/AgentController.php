@@ -19,15 +19,60 @@ class AgentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'fName' => ['required', 'max:255'],
+            'lName'=>['required', 'max:255'],
+            'email'=>['required'],
+            'phone'=>['required', 'numeric'],
+            'age'=>['required'],
+            'gender'=>['required'],
+            'biography'=>['required'],
+            'facebook'=>['required'],
+            'tweeter'=>['required'],
+            'linkedin'=>['required'],
+            'instagram'=>['required'],
+            'dob'=>['required'],
+            'image'=>['image', 'max:40280']
+        ]);
+        $agent = new Agent();
+        $agent->fName = $request->fName;
+        $agent->lName = $request->lName;
+        $agent->email = $request->email;
+        $agent->phone = $request->phone;
+        $agent->age = $request->age;
+        $agent->gender = $request->gender;
+        $agent->biography = $request->biography;
+        $agent->facebook = $request->facebook;
+        $agent->tweeter = $request->tweeter;
+        $agent->linkedin = $request->linkedin;
+        $agent->instagram = $request->instagram;
+        $agent->dob = $request->dob;
+
+        $image = $request->file('image')->store('public/images');
+        $image = str_replace('public/', '', $image);
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time() . '.' . $extension;
+            $file->move('storage/app/images', $fileName);
+            $agent->image = $fileName;
+        }else{
+            return $request;
+            $agent->image = '';
+        }
+
+        $agent->save();
+        return "Saved Successfylly";
+
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
         //
     }

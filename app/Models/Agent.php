@@ -18,9 +18,9 @@ class Agent extends Model
         return $this->hasMany(Property::class);
     }
 
-    public function images(): HasMany
-    {
-        return $this->hasMany(Image::class);
-    }
+    // public function images(): HasMany
+    // {
+    //     return $this->hasMany(Image::class);
+    // }
 
 }
