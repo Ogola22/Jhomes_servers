@@ -66,7 +66,23 @@ class ApiUserController extends Controller
 
         ]);
     }
+    public function update(string $id, Request $request)
+    {
+        $user = User::findorFail($id);
+        $request->validate([
 
+        ]);
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->lName = $request->lName;
+        $user->about = $request->about;
+        $user->phone = $request->phone;
+        $user->age = $request->age;
+        $user->gender = $request->gender;
+
+        $user->update();
+        return "You have Successfylly Updated Your Details";
+    }
     public function logout(Request $request) {
         if ($request->user()) {
             $request->user()->tokens()->delete();
@@ -83,5 +99,5 @@ class ApiUserController extends Controller
         $user = User::findorFail($id);
         return $user;
     }
-    
+
 }

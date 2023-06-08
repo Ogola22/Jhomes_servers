@@ -54,8 +54,7 @@ Route:: group (['middleware'=>['auth:sanctum']],
     Route::get('property/{id}', [ApiPropertyController::class, 'show']);
     Route::post('property', [ApiPropertyController::class, 'store']);
     Route::get('user/{id}', [ApiUserController::class, 'show']);
-
-
+    Route::put('user/{id}', [ApiUserController::class, 'update']);
     }
 );
 
