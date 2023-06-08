@@ -80,9 +80,10 @@ class AgentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Agent $agent)
+    public function show($id)
     {
-        //
+        $agent = Agent::findorFail($id);
+        return $agent;
     }
 
     /**

@@ -16,11 +16,24 @@ class ApiUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed','regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!$#%@]).*$/'],
+            'lName' =>['required', 'string', 'max:255'],
+            'about'=>['required', 'string'],
+            'phone'=>['required', 'numeric', 'unique:users'],
+            'age'=>['required', 'string'],
+            'role'=>['required', 'string'],
+            'gender'=>['required', 'string']
+
         ]);
         $user=new User();
         $user->name=$request->name;
         $user->email=$request->email;
         $user->password=bcrypt($request->password);
+        $user->lName = $request->lName;
+        $user->about = $request->about;
+        $user->phone = $request->phone;
+        $user->age = $request->age;
+        $user->role = $request->role;
+        $user->gender = $request->gender;
 
         $user->save();
         $token=$user->createToken('registertoken')->plainTextToken;
@@ -28,7 +41,7 @@ class ApiUserController extends Controller
         return response ([
             'user'=>$user,
             'token'=>$token,
-            'message'=> 'user registered successfully'
+            'message'=> 'You have successfully Registered'
 
         ]);
 
@@ -50,6 +63,7 @@ class ApiUserController extends Controller
             'user'=>$user,
             'token'=>$token,
             'message'=> 'Login successfull'
+
         ]);
     }
 
@@ -64,9 +78,10 @@ class ApiUserController extends Controller
     //     Auth::user()->tokens()->delete();
     //     return "User logged out";
     // }
-    public function show()
+    public function show($id)
     {
-        $user = User::findorFail();
+        $user = User::findorFail($id);
         return $user;
     }
+    
 }
