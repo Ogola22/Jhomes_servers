@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Agent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AgentController extends Controller
 {
@@ -49,6 +50,7 @@ class AgentController extends Controller
         $agent->linkedin = $request->linkedin;
         $agent->instagram = $request->instagram;
         $agent->dob = $request->dob;
+        $agent->image = $request->image;
 
         $image = $request->file('image')->store('public/images');
         $image = str_replace('public/', '', $image);
@@ -60,11 +62,13 @@ class AgentController extends Controller
             $agent->image = $fileName;
         }else{
             return $request;
-            $agent->image = '';
         }
 
         $agent->save();
-        return "Saved Successfylly";
+        return response()->json([
+            'agent' => $agent,
+            'image' =>('storage/app/images/' . $agent->image)
+        ]);
 
 
     }

@@ -100,4 +100,11 @@ class ApiUserController extends Controller
         return $user;
     }
 
+    public function delete($id)
+    {
+        $user = User::findorFail($id);
+        $user->delete();
+        return "Account closed successfully";
+    }
+
 }

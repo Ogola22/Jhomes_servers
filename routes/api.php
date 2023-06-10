@@ -43,7 +43,7 @@ Route::post('register', [ApiUserController::class, 'register']);
 Route::post('login', [ApiUserController::class, 'login']);
 
 Route::get('user', [ApiPropertyController::class, 'show']);
-Route::post('logout',[ApiUserController::class,'logout']);
+
 
 //protected routes
 Route:: group (['middleware'=>['auth:sanctum']],
@@ -55,6 +55,10 @@ Route:: group (['middleware'=>['auth:sanctum']],
     Route::post('property', [ApiPropertyController::class, 'store']);
     Route::get('user/{id}', [ApiUserController::class, 'show']);
     Route::put('user/{id}', [ApiUserController::class, 'update']);
+    Route::delete('user/{id}', [ApiUserController::class, 'delete']);
+
+    
+    Route::post('logout',[ApiUserController::class,'logout']);
     }
 );
 

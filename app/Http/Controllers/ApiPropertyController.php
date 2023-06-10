@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Exists;
 
 
@@ -28,7 +29,9 @@ class ApiPropertyController extends Controller
         $property->bathroom = $request->bathroom;
         $property->size = $request->size;
         $property->type = $request->type;
+        $property->property_for = $request->property_for;
         $property->garage = $request->garage;
+
         //$property->image_path = $request->file('image')->store('public/images');
 
 
