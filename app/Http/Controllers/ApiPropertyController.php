@@ -13,6 +13,7 @@ class ApiPropertyController extends Controller
     {
         $properties = Property::all();
         return $properties;
+
     }
 
     public function store(Request $request)
@@ -31,12 +32,27 @@ class ApiPropertyController extends Controller
         $property->type = $request->type;
         $property->property_for = $request->property_for;
         $property->garage = $request->garage;
+        $property->image = $request->image;
 
-        //$property->image_path = $request->file('image')->store('public/images');
 
+        $image = $request->file('image')->store('public/images/properties');
+        $image = str_replace('public/', '', $image);
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->extension();
+            $fileName = time() . '.' . $extension;
+            $file->move('public/images/properties', $fileName);
+            $property->image = $fileName;
+        }else{
+            return $request;
+        }
 
         $property->save();
-        return "Property Saved Successfylly";
+        return response()->json([
+            'property' => $property,
+            'image' =>('' . $property->image),
+            'message' => "Property Saved Successfylly"
+        ]);
 
     }
     public function show($id)

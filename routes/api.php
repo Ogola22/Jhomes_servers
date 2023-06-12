@@ -42,8 +42,7 @@ Route::post('reset-password', [NewPasswordController::class, 'store'])
 Route::post('register', [ApiUserController::class, 'register']);
 Route::post('login', [ApiUserController::class, 'login']);
 
-Route::get('user', [ApiPropertyController::class, 'show']);
-
+Route::get('user', [ApiUserController::class, 'show']);
 
 //protected routes
 Route:: group (['middleware'=>['auth:sanctum']],
@@ -57,7 +56,7 @@ Route:: group (['middleware'=>['auth:sanctum']],
     Route::put('user/{id}', [ApiUserController::class, 'update']);
     Route::delete('user/{id}', [ApiUserController::class, 'delete']);
 
-    
+
     Route::post('logout',[ApiUserController::class,'logout']);
     }
 );
