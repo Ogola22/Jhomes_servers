@@ -50,7 +50,7 @@ class ApiPropertyController extends Controller
         $property->save();
         return response()->json([
             'property' => $property,
-            'image' =>('' . $property->image),
+            'image' =>('public/images/properties' . $property->$image->$fileName),
             'message' => "Property Saved Successfylly"
         ]);
 

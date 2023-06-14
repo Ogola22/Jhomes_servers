@@ -16,12 +16,12 @@ class ApiUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed','regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!$#%@]).*$/'],
-            'lName' =>['required', 'string', 'max:255'],
-            'about'=>['required', 'string'],
-            'phone'=>['required', 'numeric', 'unique:users'],
-            'age'=>['required', 'string'],
-            'role'=>['required', 'string'],
-            'gender'=>['required', 'string']
+            'lName' =>['string', 'max:255'],
+            'about'=>['string'],
+            'phone'=>['numeric', 'unique:users'],
+            'age'=>['string'],
+            'role'=>['string'],
+            'gender'=>['string']
 
         ]);
         $user=new User();
